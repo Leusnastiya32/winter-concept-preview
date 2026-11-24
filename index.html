@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chatcal Mountains: зимний концепт (тёплая версия)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14110f;--card:#1e1a16;--line:rgba(255,255,255,.09);--txt:#f4ede3;--mut:rgba(244,237,227,.68);--acc:#f2703a;--acc2:#ff8a54;--gold:#e9b866}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Montserrat,sans-serif;background:radial-gradient(60% 35% at 85% 18%,rgba(242,112,58,.08),transparent 65%),radial-gradient(50% 30% at 10% 60%,rgba(233,184,102,.05),transparent 70%),var(--bg);color:var(--txt);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+.demo-note{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:100;background:rgba(20,17,15,.92);border:1px solid rgba(233,184,102,.45);color:var(--gold);font-size:11px;letter-spacing:.04em;padding:8px 14px;border-radius:999px;backdrop-filter:blur(6px);white-space:nowrap}
+#snow{position:fixed;inset:0;z-index:50;pointer-events:none}
+#bokeh{position:fixed;inset:0;z-index:3;pointer-events:none;mix-blend-mode:screen}
+
+/* top */
+.top{position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:24px 5vw}
+.logo-pill{background:#fff;border-radius:14px;padding:6px 12px}
+.logo-pill img{height:42px;width:auto}
+.top .tel{font-weight:600;font-size:14px;text-align:right;line-height:1.55}
+.top .tel small{display:block;font-weight:500;opacity:.65;font-size:11px}
+
+/* garland (warm) */
+.garland{position:absolute;top:0;left:0;right:0;height:70px;z-index:25;pointer-events:none}
+.garland .wire{position:absolute;top:10px;left:-2%;width:104%;height:46px;border-bottom:2px solid rgba(255,235,205,.22);border-radius:0 0 50% 50%/0 0 100% 100%}
+.bulb{position:absolute;width:10px;height:14px;border-radius:50% 50% 55% 55%;box-shadow:0 0 16px 4px currentColor;background:currentColor}
+.bulb::before{content:"";position:absolute;top:-4px;left:2px;width:6px;height:5px;background:#2b2520;border-radius:2px}
+
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:130px 5vw 80px}
+.hero-bg{position:absolute;inset:-8% 0;background:url("assets/winter-hero.jpg") center/cover;filter:saturate(.8) brightness(.8) contrast(1.05) sepia(.2);will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,17,15,.88) 0%,rgba(20,17,15,.55) 48%,rgba(20,17,15,.25) 100%),linear-gradient(180deg,rgba(20,17,15,.35) 0%,rgba(20,17,15,0) 35%,var(--bg) 100%)}
+#scene{position:absolute;right:0;top:0;width:50%;height:100%;z-index:12;pointer-events:none}
+.hero-in{position:relative;z-index:15;max-width:720px}
+.pill{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.06);backdrop-filter:blur(6px);margin-bottom:26px;color:var(--txt)}
+.hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(40px,6vw,82px);line-height:1.04;margin-bottom:24px;letter-spacing:-.01em}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em}
+.hero h1 .w span{display:inline-block;transform:translateY(110%)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p.lead{font-size:clamp(15px,1.45vw,18px);line-height:1.65;max-width:540px;color:var(--mut);margin-bottom:34px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--acc);color:#fff;font-weight:700;font-size:14px;letter-spacing:.03em;padding:17px 30px;border-radius:999px;box-shadow:0 12px 36px -10px rgba(242,112,58,.8);transition:transform .25s,background .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px);background:var(--acc2);box-shadow:0 18px 44px -10px rgba(242,112,58,.95)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.35);box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.08);box-shadow:none}
+.facts{display:grid;grid-template-columns:repeat(4,auto);gap:34px;margin-top:46px;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);max-width:720px}
+.facts b{display:block;font-size:clamp(16px,1.5vw,20px);font-weight:700;margin-bottom:6px;white-space:nowrap}
+.facts span{display:block;font-size:12px;color:var(--mut);line-height:1.4}
+
+/* sections */
+.sec{position:relative;padding:110px 5vw;z-index:5}
+.kick{display:block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:18px}
+.sec-h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,54px);line-height:1.1;max-width:780px;margin-bottom:56px}
+.sw{display:inline-block;overflow:hidden;vertical-align:top;padding:.05em 0 .18em;margin-bottom:-.18em}
+.sw>span{display:inline-block;will-change:transform}
+
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px}
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.fimg{position:relative;aspect-ratio:3/2;background:linear-gradient(135deg,#2a2018,#17120f);overflow:hidden}
+.fimg img{width:100%;height:100%;object-fit:cover}
+.fimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,0) 55%,rgba(30,26,22,.9) 100%)}
+.fimg .nb{position:absolute;top:16px;left:16px;z-index:2;font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);background:rgba(20,17,15,.65);border:1px solid rgba(233,184,102,.4);border-radius:999px;padding:6px 16px;backdrop-filter:blur(6px)}
+.fbody{padding:26px 28px 32px}
+.fbody h3{font-size:18px;margin-bottom:10px}
+.fbody p{color:var(--mut);line-height:1.6;font-size:14px}
+
+.cot{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;transition:transform .4s,border-color .4s;transform-style:preserve-3d}
+.card:hover{border-color:rgba(242,112,58,.45)}
+.card .ph{position:relative;aspect-ratio:16/10;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s}
+.card:hover .ph img{transform:scale(1.06)}
+.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.1),rgba(20,17,15,.5))}
+.tagpill{position:absolute;top:16px;right:16px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc2);background:rgba(20,17,15,.7);border:1px solid rgba(242,112,58,.5);border-radius:999px;padding:7px 14px;backdrop-filter:blur(6px)}
+.card .body{padding:26px 28px 30px}
+.card h3{font-size:19px;margin-bottom:10px}
+.card .spec{font-size:13px;color:var(--mut);line-height:1.6;margin-bottom:22px;min-height:62px}
+.price{display:flex;justify-content:space-between;align-items:end;gap:14px;padding-top:20px;border-top:1px solid var(--line)}
+.price b{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;white-space:nowrap}
+.price small{color:var(--mut);font-size:12px;margin-left:4px}
+.price a{background:var(--acc);color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;padding:12px 20px;border-radius:999px;transition:background .25s}
+.price a:hover{background:var(--acc2)}
+
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.about p{font-size:17px;line-height:1.75;color:var(--mut);margin-bottom:18px}
+.about .pic{border-radius:28px;overflow:hidden;height:440px;position:relative}
+.about .pic img{width:100%;height:120%;object-fit:cover}
+.book{background:linear-gradient(135deg,#2b1a14,#1c1512 60%,#241711);border-radius:34px;padding:64px 5vw;text-align:center;border:1px solid var(--line);position:relative;overflow:hidden}
+.book::before{content:"";position:absolute;width:520px;height:520px;right:-140px;top:-220px;background:radial-gradient(circle,rgba(242,112,58,.28),transparent 65%)}
+.book h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin-bottom:16px;position:relative}
+.book p{color:var(--mut);margin-bottom:30px;position:relative}
+.book form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+.book input{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);color:#fff;padding:17px 22px;border-radius:999px;font:500 15px Montserrat;min-width:240px}
+.book input::placeholder{color:rgba(255,255,255,.55)}
+footer{padding:40px 5vw 90px;color:var(--mut);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line);margin:0 5vw}
+
+.thread{position:fixed;right:22px;top:16vh;height:68vh;width:2px;background:rgba(255,255,255,.14);border-radius:2px;z-index:60;pointer-events:none}
+.thread .fill{position:absolute;inset:0;background:linear-gradient(var(--gold),var(--acc));transform-origin:top;transform:scaleY(0)}
+.thread .tb{position:absolute;left:50%;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--acc2);box-shadow:0 0 14px 4px rgba(242,112,58,.8)}
+
+@media(max-width:900px){.about{grid-template-columns:1fr}.top .tel small{display:none}.facts{grid-template-columns:repeat(2,auto)}#scene{width:44%;opacity:.9}}
+@media(max-width:700px){.thread{display:none}}
+@media(max-width:560px){
+  #scene{top:62px;width:56%;height:320px;opacity:.95}
+  .hero::after{background:linear-gradient(180deg,rgba(20,17,15,.55) 0%,rgba(20,17,15,.35) 40%,var(--bg) 100%)}
+  .hero{padding:120px 22px 60px;align-items:flex-start}
+  .hero-in{padding-top:30px}
+  .hero h1{font-size:clamp(38px,11vw,52px)}
+  .facts{gap:22px 18px;margin-top:36px}
+  .btn{padding:16px 26px}
+  .cta-row .btn{width:100%;text-align:center}
+  .sec{padding:80px 22px}
+  .sec-h{margin-bottom:34px}
+  .fbody,.card .body{padding:22px 22px 26px}
+  .card .spec{min-height:0}
+  .price{flex-wrap:wrap;align-items:center}
+  .price > div{flex:1 1 100%}
+  .price a{flex:1 1 100%;text-align:center;padding:15px 20px;font-size:13px}
+  .about{gap:34px}.about .pic{height:300px}.about p{font-size:15px}
+  .book{padding:44px 22px;border-radius:26px}
+  .book input,.book .btn{width:100%;min-width:0;text-align:center}
+  footer{margin:0 22px;padding-bottom:110px}
+  .demo-note{white-space:normal;text-align:center;width:calc(100% - 28px);font-size:10px;line-height:1.35;border-radius:16px;padding:7px 12px;bottom:10px}
+}
+</style>
+</head>
+<body>
+<canvas id="bokeh"></canvas>
+<canvas id="snow"></canvas>
+<div class="demo-note">Демо-концепт зимнего оформления · не официальный сайт Chatcal Mountains</div>
+
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+
+  <div class="top">
+    <a class="logo-pill" href="#top"><img src="https://chatcal.uz/thumb/2/WBV28wwYWFFu4rYkRHRjYA/r/d/lib_2681201_349384_0525.png" alt="Chatcal Mountains"></a>
+    <div class="tel">+998 71 236 11 22<br>+998 90 168 20 28<small>Бурчмулла, Ташкентская область</small></div>
+  </div>
+
+  <div class="garland" id="garland"><div class="wire"></div></div>
+  <canvas id="scene"></canvas>
+
+  <div class="hero-in">
+    <span class="pill" id="eb">Зима в горах · Бурчмулла</span>
+    <h1 id="h1"><span class="w"><span>Зима</span></span><br><span class="w"><span>у&nbsp;горной</span></span> <span class="w"><span><em>реки</em></span></span></h1>
+    <p class="lead" id="hp">Уютные домики с камином посреди заснеженного национального парка. Без суеты, без интернета, только вы, семья и тишина гор.</p>
+    <div class="cta-row" id="cta">
+      <a class="btn" href="#book">Забронировать домик</a>
+      <a class="btn ghost" href="#cottages">Смотреть домики</a>
+    </div>
+    <div class="facts" id="facts">
+      <div><b>с 2004 года</b><span>принимаем гостей</span></div>
+      <div><b>6 домиков</b><span>в каждом камин</span></div>
+      <div><b>от 3 600 000 сум</b><span>за домик</span></div>
+      <div><b>≈ 2 часа</b><span>от Ташкента</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="why">
+  <span class="kick">Почему Чаткал</span>
+  <h2 class="sec-h">Три причины провести зиму у горной реки</h2>
+  <div class="feat">
+    <div class="fcard"><div class="fimg"><img src="assets/gen-cozy.jpg" alt=""><span class="nb">01</span></div><div class="fbody"><h3>Уютные домики</h3><p>Камин, терраса, кухня с посудой. Экологически чистый район и роскошная природа вокруг.</p></div></div>
+    <div class="fcard"><div class="fimg"><img src="assets/gen-detox.jpg" alt=""><span class="nb">02</span></div><div class="fbody"><h3>Диджитал детокс</h3><p>Отдохните от интернета: вечера у камина, настольные игры и разговоры без экранов.</p></div></div>
+    <div class="fcard"><div class="fimg"><img src="assets/gen-parking.jpg" alt=""><span class="nb">03</span></div><div class="fbody"><h3>Бесплатная парковка</h3><p>Приезжайте на своей машине и оставляйте её на территории курорта без доплат.</p></div></div>
+  </div>
+</section>
+
+<section class="sec" id="cottages">
+  <span class="kick">Домики</span>
+  <h2 class="sec-h">Выберите домик для зимнего отдыха</h2>
+  <div class="cot">
+    <article class="card"><div class="ph"><span class="tagpill">4 места</span><img src="assets/winter-cottage1.jpg" alt="Четырёхместный коттедж №1"></div>
+      <div class="body"><h3>Четырёхместный коттедж №1</h3><div class="spec">2 спальни, гостиная с камином, балкон, кухня с утварью, спутниковое TV</div><div class="price"><div><b>3 600 000</b><small>сум</small></div><a href="#book">Забронировать</a></div></div></article>
+    <article class="card"><div class="ph"><span class="tagpill">6 мест</span><img src="assets/winter-cottage2.jpg" alt="Шестиместный коттедж №2"></div>
+      <div class="body"><h3>Шестиместный коттедж №2</h3><div class="spec">3 спальни, гостиная с камином, терраса, балкон, кухня с утварью</div><div class="price"><div><b>5 400 000</b><small>сум</small></div><a href="#book">Забронировать</a></div></div></article>
+    <article class="card"><div class="ph"><span class="tagpill">6 мест</span><img src="assets/winter-cottage3.jpg" alt="Шестиместный коттедж №3-6"></div>
+      <div class="body"><h3>Шестиместный коттедж №3–6</h3><div class="spec">3 спальни, гостиная с камином, терраса, два санузла, кухня с утварью</div><div class="price"><div><b>5 400 000</b><small>сум</small></div><a href="#book">Забронировать</a></div></div></article>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="about">
+    <div>
+      <span class="kick">О курорте</span>
+      <h2 class="sec-h" style="margin-bottom:28px">Курорт с 2004 года</h2>
+      <p>Chatcal Mountains Riverside Resort расположен в глубине Угам-Чаткальского национального парка, на берегу реки Чаткал.</p>
+      <p>Наши гости любят красоту нетронутой природы и комфорт, избегают суеты и ценят хороший сервис. Это идеальное место, чтобы восстановить силы: на зимние выходные, на каникулы или просто на несколько дней тишины.</p>
+    </div>
+    <div class="pic"><img id="par" src="assets/winter-about.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="sec" id="book">
+  <div class="book">
+    <h2>Забронируйте зимние даты</h2>
+    <p>Оставьте номер, и мы перезвоним, чтобы подобрать домик и даты заезда.</p>
+    <form onsubmit="return false"><input placeholder="Ваше имя"><input placeholder="+998 ..."><a class="btn" href="#book">Отправить заявку</a></form>
+  </div>
+</section>
+
+<div class="thread"><div class="fill"></div><div class="tb"></div></div>
+<footer><span>Ташкентская область, Бостанлыкский район, пос. Бурчмулла</span><span>info@chatcal.uz</span></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // warm garland
+  var g=document.getElementById('garland'), cols=['#ffd9a0','#ffb96b','#fff1d8','#ff9a4d'];
+  var n=Math.round(innerWidth/70), bulbs=[];
+  for(var i=0;i<n;i++){
+    var t=i/(n-1), b=document.createElement('i'); b.className='bulb';
+    b.style.left='calc('+(t*100)+'% - 5px)'; b.style.top=(10+Math.sin(t*Math.PI)*34)+'px';
+    b.style.color=cols[i%cols.length]; g.appendChild(b); bulbs.push(b);
+  }
+
+  // warm bokeh lights
+  var bc=document.getElementById('bokeh'), bx=bc.getContext('2d'), BW,BH, dots=[];
+  function bsize(){BW=bc.width=innerWidth;BH=bc.height=innerHeight}
+  bsize(); addEventListener('resize',bsize);
+  var bcol=[[255,196,120],[255,150,80],[255,225,170],[240,120,60]];
+  if(!reduce)for(var i=0;i<16;i++)dots.push({x:Math.random(),y:Math.random(),r:26+Math.random()*70,c:bcol[i%4],a:.05+Math.random()*.1,vx:(Math.random()-.5)*.00006,vy:-.00004-Math.random()*.00006,p:Math.random()*6.28});
+  (function bl(t){
+    bx.clearRect(0,0,BW,BH);
+    dots.forEach(function(d){
+      d.x+=d.vx*16; d.y+=d.vy*16; if(d.y<-.1){d.y=1.1;d.x=Math.random()} if(d.x<-.1)d.x=1.1; if(d.x>1.1)d.x=-.1;
+      var pulse=.75+.25*Math.sin((t||0)/1800+d.p), px=d.x*BW, py=d.y*BH-(scrollY*.05%BH);
+      var gr=bx.createRadialGradient(px,py,0,px,py,d.r);
+      gr.addColorStop(0,'rgba('+d.c+','+(d.a*pulse*1.6)+')'); gr.addColorStop(.6,'rgba('+d.c+','+(d.a*pulse*.5)+')'); gr.addColorStop(1,'rgba('+d.c+',0)');
+      bx.fillStyle=gr; bx.beginPath(); bx.arc(px,py,d.r,0,6.283); bx.fill();
+    });
+    requestAnimationFrame(bl);
+  })();
+
+  // light snow
+  var c=document.getElementById('snow'), x=c.getContext('2d'), W,H,fl=[];
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight}
+  size(); addEventListener('resize',size);
+  var cnt=reduce?0:Math.min(32,Math.round(innerWidth/42));
+  for(var i=0;i<cnt;i++)fl.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.2+.6,s:Math.random()*.7+.25,d:Math.random()*6.28,o:Math.random()*.4+.3});
+  (function loop(){
+    x.clearRect(0,0,W,H);
+    fl.forEach(function(f){f.y+=f.s;f.d+=.012;f.x+=Math.sin(f.d)*.5;if(f.y>H+5){f.y=-5;f.x=Math.random()*W}
+      x.beginPath();x.fillStyle='rgba(255,246,232,'+f.o+')';x.arc(f.x,f.y,f.r,0,6.283);x.fill()});
+    requestAnimationFrame(loop);
+  })();
+
+  if(reduce||!window.gsap){document.querySelectorAll('.hero h1 .w span').forEach(function(s){s.style.transform='none'});return}
+  gsap.registerPlugin(ScrollTrigger); gsap.ticker.lagSmoothing(0);
+  var E='power3.out';
+
+  // hero intro
+  gsap.timeline({defaults:{ease:E}})
+    .from('#eb',{y:20,opacity:0,duration:.7})
+    .to('.hero h1 .w span',{y:0,duration:1,stagger:.12},'-=.4')
+    .from('#hp',{y:24,opacity:0,duration:.8},'-=.5')
+    .from('#cta .btn',{y:24,opacity:0,duration:.7,stagger:.1},'-=.5')
+    .from('#facts > div',{y:26,opacity:0,duration:.7,stagger:.1},'-=.3')
+    .from('#facts',{borderTopColor:'rgba(255,255,255,0)',duration:.7},'<');
+
+  bulbs.forEach(function(b){gsap.to(b,{opacity:.4,duration:.8+Math.random()*1,yoyo:true,repeat:-1,delay:Math.random()*1.5,ease:'sine.inOut'})});
+  gsap.from(bulbs,{scale:0,duration:.5,stagger:.03,delay:.3,ease:'back.out(3)'});
+
+  gsap.to('.hero-bg',{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#par',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.hero-in',{y:-110,opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'62% top',scrub:true}});
+
+  // ===== one-take scroll flow =====
+  function splitWords(el){
+    var out=[];
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(n){
+        if(n.nodeType===3){
+          var frag=document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function(p){
+            if(!p)return;
+            if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(' '));return}
+            var w=document.createElement('span'),i=document.createElement('span');
+            w.className='sw'; i.textContent=p; w.appendChild(i); frag.appendChild(w); out.push(i);
+          });
+          node.replaceChild(frag,n);
+        } else if(n.nodeType===1){walk(n)}
+      });
+    })(el);
+    gsap.set(out,{yPercent:115});
+    return out;
+  }
+
+  // 1) why: kicker + heading, then three photo cards one after another
+  var why=gsap.timeline({scrollTrigger:{trigger:'#why',start:'top 68%'},defaults:{ease:E}});
+  gsap.set('#why .kick',{opacity:0,y:14});
+  why.to('#why .kick',{opacity:1,y:0,duration:.6}).to(splitWords(document.querySelector('#why .sec-h')),{yPercent:0,duration:.9,stagger:.08},'<.1');
+  gsap.utils.toArray('#why .fcard').forEach(function(c,i){
+    var im=c.querySelector('.fimg img'), nb=c.querySelector('.nb'), h=splitWords(c.querySelector('h3')), p=splitWords(c.querySelector('p'));
+    gsap.set(c,{opacity:0,y:60}); gsap.set(im,{clipPath:'inset(0 0 100% 0)',scale:1.2}); gsap.set(nb,{opacity:0,scale:.6});
+    var ct=gsap.timeline({defaults:{ease:E}});
+    ct.to(c,{opacity:1,y:0,duration:.8})
+      .to(im,{clipPath:'inset(0 0 0% 0)',scale:1,duration:1.1,clearProps:'transform,clipPath'},'<.1')
+      .to(nb,{opacity:1,scale:1,duration:.5,ease:'back.out(2)'},'<.5')
+      .to(h,{yPercent:0,duration:.7,stagger:.07},'<.1').to(p,{yPercent:0,duration:.7,stagger:.018},'<.15');
+    why.add(ct,i?'<0.6':'-=0.45');
+  });
+
+  // 2) cottages
+  gsap.set('#cottages .kick',{opacity:0,y:14});
+  gsap.timeline({scrollTrigger:{trigger:'#cottages',start:'top 72%'},defaults:{ease:E}})
+    .to('#cottages .kick',{opacity:1,y:0,duration:.6}).to(splitWords(document.querySelector('#cottages .sec-h')),{yPercent:0,duration:.9,stagger:.08},'<.1');
+  gsap.utils.toArray('#cottages .card').forEach(function(card,i){
+    var im=card.querySelector('.ph img'), tg=card.querySelector('.tagpill'), h=splitWords(card.querySelector('h3')), sp=splitWords(card.querySelector('.spec')), pr=card.querySelectorAll('.price > *');
+    gsap.set(card,{opacity:0,y:80}); gsap.set(im,{clipPath:'inset(0 0 100% 0)',scale:1.25}); gsap.set(tg,{opacity:0,x:20}); gsap.set(pr,{opacity:0,y:14});
+    gsap.timeline({defaults:{ease:E},delay:(i%3)*.18,scrollTrigger:{trigger:card,start:'top 86%'}})
+      .to(card,{opacity:1,y:0,duration:.8})
+      .to(im,{clipPath:'inset(0 0 0% 0)',scale:1,duration:1.1,clearProps:'transform,clipPath'},'<.1')
+      .to(tg,{opacity:1,x:0,duration:.6},'<.5')
+      .to(h,{yPercent:0,duration:.7,stagger:.07},'<.1').to(sp,{yPercent:0,duration:.7,stagger:.018},'<.1')
+      .to(pr,{opacity:1,y:0,duration:.6,stagger:.12},'<.2');
+  });
+
+  // 3) about
+  var ab=gsap.timeline({scrollTrigger:{trigger:'#about',start:'top 68%'},defaults:{ease:E}});
+  gsap.set('#about .pic',{clipPath:'inset(0 0 0 100% round 28px)'}); gsap.set('#about .kick',{opacity:0,y:14});
+  ab.to('#about .kick',{opacity:1,y:0,duration:.6}).to(splitWords(document.querySelector('#about .sec-h')),{yPercent:0,duration:.9,stagger:.08},'<.1');
+  document.querySelectorAll('#about p').forEach(function(p){ab.to(splitWords(p),{yPercent:0,duration:.7,stagger:.02},'<.35')});
+  ab.to('#about .pic',{clipPath:'inset(0 0 0 0% round 28px)',duration:1.3,ease:'power4.inOut',clearProps:'clipPath'},'-=1.2');
+
+  // 4) booking
+  gsap.set('.book',{opacity:0,y:70,scale:.95}); gsap.set('.book form > *',{opacity:0,y:20});
+  gsap.timeline({scrollTrigger:{trigger:'#book',start:'top 72%'},defaults:{ease:E}})
+    .to('.book',{opacity:1,y:0,scale:1,duration:.9})
+    .to(splitWords(document.querySelector('.book h2')),{yPercent:0,duration:.8,stagger:.07},'<.2')
+    .to(splitWords(document.querySelector('.book p')),{yPercent:0,duration:.7,stagger:.02},'<.3')
+    .to('.book form > *',{opacity:1,y:0,duration:.6,stagger:.12},'<.25');
+  gsap.from('footer span',{opacity:0,y:20,duration:.8,stagger:.15,ease:E,scrollTrigger:{trigger:'footer',start:'top 96%'}});
+
+  // blocks flow into each other
+  gsap.utils.toArray('.sec').slice(0,-1).forEach(function(sec){
+    gsap.to(sec,{y:-50,opacity:.25,ease:'none',scrollTrigger:{trigger:sec,start:'bottom 48%',end:'bottom 2%',scrub:true}});
+  });
+
+  // glowing thread
+  var fill=document.querySelector('.thread .fill'), tb=document.querySelector('.thread .tb');
+  ScrollTrigger.create({start:0,end:'max',onUpdate:function(s){fill.style.transform='scaleY('+s.progress+')';tb.style.top=(s.progress*100)+'%'}});
+  addEventListener('load',function(){ScrollTrigger.refresh()});
+})();
+</script>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+const canvas=document.getElementById('scene');
+{
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.25));
+  renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.0;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  const scene=new THREE.Scene();
+  const pm=new THREE.PMREMGenerator(renderer);
+  scene.environment=pm.fromScene(new RoomEnvironment(),0.05).texture;
+  const cam=new THREE.PerspectiveCamera(32,1,.1,100); cam.position.set(0,0,16);
+  scene.add(new THREE.HemisphereLight(0xffe2bd,0x1a120d,.8));
+  const warm=new THREE.PointLight(0xff9a55,60,30); warm.position.set(2,-1,6); scene.add(warm);
+  const key=new THREE.DirectionalLight(0xfff0dc,1.8); key.position.set(4,6,6); scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffb070,1.2); rim.position.set(-6,2,-3); scene.add(rim);
+
+  const root=new THREE.Group(); scene.add(root);
+
+  // hanging winter lanterns: bronze frame, warm glowing glass, soft halo that flickers like a candle
+  const hangs=[];
+  const haloTex=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');
+    const g=x.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,'rgba(255,190,110,.95)');g.addColorStop(.3,'rgba(255,140,60,.45)');g.addColorStop(.65,'rgba(255,110,40,.14)');g.addColorStop(1,'rgba(255,100,30,0)');
+    x.fillStyle=g;x.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)})();
+  const bronze=new THREE.MeshStandardMaterial({color:0x2f2218,metalness:.9,roughness:.38});
+  const brass=new THREE.MeshStandardMaterial({color:0xc9954a,metalness:1,roughness:.3});
+  function lantern(len,s){
+    const g=new THREE.Group();
+    const str=new THREE.Mesh(new THREE.CylinderGeometry(.012,.012,len,4),new THREE.MeshBasicMaterial({color:0xffe4bd,transparent:true,opacity:.55})); str.position.y=-len/2; g.add(str);
+    const L=new THREE.Group(); L.position.y=-len-.86*s; L.scale.setScalar(s); g.add(L);
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(.14,.025,8,18),brass); ring.position.y=.86; L.add(ring);
+    const roof=new THREE.Mesh(new THREE.ConeGeometry(.5,.32,6),bronze); roof.position.y=.62; L.add(roof);
+    const plate=new THREE.Mesh(new THREE.CylinderGeometry(.44,.44,.07,6),brass); plate.position.y=.43; L.add(plate);
+    const glassMat=new THREE.MeshStandardMaterial({color:0xffc27a,emissive:0xff8a2a,emissiveIntensity:2.3,roughness:.45,transparent:true,opacity:.95});
+    const glass=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.9,6),glassMat); glass.position.y=-.05; L.add(glass);
+    const core=new THREE.Mesh(new THREE.SphereGeometry(.17,16,16),new THREE.MeshBasicMaterial({color:0xfff2d6})); core.position.y=-.05; L.add(core);
+    for(let k=0;k<6;k++){const a=k*Math.PI/3;
+      const bar=new THREE.Mesh(new THREE.CylinderGeometry(.022,.022,.92,6),brass); bar.position.set(Math.cos(a)*.38,-.05,Math.sin(a)*.38); L.add(bar);}
+    const base=new THREE.Mesh(new THREE.CylinderGeometry(.36,.26,.12,6),bronze); base.position.y=-.56; L.add(base);
+    const knob=new THREE.Mesh(new THREE.SphereGeometry(.06,10,10),brass); knob.position.y=-.67; L.add(knob);
+    const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:haloTex,transparent:true,depthWrite:false,opacity:.9})); halo.scale.setScalar(4.8); halo.position.y=-.05; L.add(halo);
+    return {g,glassMat,halo};
+  }
+  (innerWidth<560
+    ? [[-2.3,1.5,.62],[.1,2.2,.8],[2.3,1.7,.66],[3.7,1.0,.5]]
+    : [[-2.7,4.2,.85],[-.3,6.2,1.15],[2.2,3.4,.9],[3.5,5.8,.68],[-4.0,2.3,.62]]
+  ).forEach(([x,len,s],i)=>{
+    const o=lantern(len,s); o.g.position.z=-.3*i; root.add(o.g);
+    hangs.push({g:o.g,x,ph:i*1.3,sp:.6+i*.1,mat:o.glassMat,halo:o.halo});
+  });
+
+  const baseY=0; let S=1;
+  function size(){
+    const w=canvas.clientWidth,h=canvas.clientHeight; renderer.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix();
+    const halfH=Math.tan(THREE.MathUtils.degToRad(cam.fov/2))*cam.position.z, visW=2*halfH*cam.aspect;
+    S=Math.min(1.05,visW/8.6); root.scale.setScalar(S);
+    hangs.forEach(h=>{h.g.position.set(h.x,(halfH+.3-baseY)/S,h.g.position.z)});
+  }
+  size(); new ResizeObserver(size).observe(canvas);
+
+  let mx=0,my=0; addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5; my=e.clientY/innerHeight-.5});
+  let visible=true; new IntersectionObserver(es=>visible=es[0].isIntersecting).observe(canvas);
+  const clock=new THREE.Clock(); let intro=0, last=0;
+  (function frame(now){
+    requestAnimationFrame(frame); if(!visible||now-last<33)return; last=now;
+    const t=clock.getElapsedTime(); if(intro<1)intro=Math.min(1,intro+.02);
+    const e=1-Math.pow(1-intro,3);
+    root.position.y=baseY+(1-e)*5-scrollY/innerHeight*.8;
+    root.rotation.y=mx*.25; root.rotation.x=my*.06;
+    hangs.forEach(h=>{
+      h.g.rotation.z=Math.sin(t*h.sp+h.ph)*.06; h.g.rotation.x=Math.cos(t*h.sp*.8+h.ph)*.03;
+      const f=Math.sin(t*3.1+h.ph)*.5+Math.sin(t*7.7+h.ph*2.3)*.25;
+      h.mat.emissiveIntensity=2.3+f*.45; h.halo.material.opacity=.85+f*.12;
+    });
+    renderer.render(scene,cam);
+  })();
+}
+</script>
+</body>
+</html>
